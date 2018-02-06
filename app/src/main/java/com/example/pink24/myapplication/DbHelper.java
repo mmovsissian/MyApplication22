@@ -51,5 +51,23 @@ public class DbHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void update(String id, String name, String age) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(col2_name, name);
+        contentValues.put(col3_age, age);
+        sqLiteDatabase.update(Table_name, contentValues, "Id=?", new String[]{id});
+    }
+
+
+    public void delete(String id)
+    {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.delete(Table_name,"Id=?",new String[]{id});
+
+
+
+
+    }
 
 }

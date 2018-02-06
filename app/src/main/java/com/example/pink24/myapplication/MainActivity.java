@@ -14,8 +14,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText nametext;
     private EditText agetext;
     private Button save;
-
-
+    private Button update;
+    private EditText idtext;
+    private Button delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
         save=findViewById(R.id.save);
         nametext=findViewById(R.id.name);
         agetext=findViewById(R.id.age);
+        update=findViewById(R.id.update);
+        idtext=findViewById(R.id.id);
+        delete=findViewById(R.id.delete);
+
 final  DbHelper dbHelper= new DbHelper(this);
 
 
@@ -50,7 +55,24 @@ save.setOnClickListener(new View.OnClickListener() {
             }
         });
 
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                String name= nametext.getText().toString();
+                String age = agetext.getText().toString();
+                String id=idtext.getText().toString();
+                dbHelper.update(id,name,age);
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id=idtext.getText().toString();
+                dbHelper.delete(id);
+            }
+        });
 
 
     }
